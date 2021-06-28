@@ -27,6 +27,12 @@ export default class Server {
      * @param { string } serverId Server ID
      */
     attachEvents(webSocketServer: WebSocketServer, serverId: string): void;
+    /**
+     * On event listener
+     * @param { string } eventName Name of the event
+     * @param { string } serverId ID of the server
+     * @param { CallableFunction } callback Callback to fire on event fire
+     */
     on(eventName: string, serverId: string, callback: CallableFunction): void;
 }
 //# sourceMappingURL=Server.d.ts.map

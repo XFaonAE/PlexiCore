@@ -47,6 +47,7 @@ export default class Server {
         this.servers.push({
             id: id,
             server: webSocketServer,
+            connections: [],
             events: {
                 onRequest: [],
                 onMessage: [],
@@ -75,6 +76,7 @@ export default class Server {
 
         webSocketServer.on("request", (request: any) => {
             const connection = request.accept(null, request.origin);
+            server.connections.push(connection);
 
             server.events.onOpen.forEach((value: CallableFunction, index: number) => {
                 value(connection);
@@ -91,6 +93,12 @@ export default class Server {
             });
 
             connection.on("close", () => {
+                server.connections.forEach((value: any, index: number) => {
+                    if (connection == value) {
+                        delete server.connections[index];
+                    }
+                });
+
                 server.events.onClose.forEach((value: CallableFunction, index: number) => {
                     value(connection);
                 });
@@ -98,6 +106,12 @@ export default class Server {
         });
     }
 
+    /**
+     * On event listener
+     * @param { string } eventName Name of the event
+     * @param { string } serverId ID of the server
+     * @param { CallableFunction } callback Callback to fire on event fire
+     */
     public on(eventName: string, serverId: string, callback: CallableFunction) {
         let server: any = {};
         let serverIndex: number = 0;
@@ -126,4 +140,8 @@ export default class Server {
                 break;
         }
     }
+
+    /**
+     * Send a message to a connection
+     */
 }

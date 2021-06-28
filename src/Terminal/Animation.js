@@ -146,15 +146,11 @@ var Animation = /** @class */ (function () {
      */
     Animation.prototype.exitSpinner = function (statusName) {
         var icon = this.currentOptions.statusIcons[statusName];
-        this.preRenderedFrames = [];
         this.renderFrame = false;
-        this.write(this.currentMessage, {
-            animation: {
-                frames: [
-                    icon
-                ]
-            }
-        });
+        this.preRenderedFrames = [
+            icon + " " + this.currentMessage
+        ];
+        process.stdout.write("\r" + this.preRenderedFrames[0]);
     };
     return Animation;
 }());

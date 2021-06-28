@@ -34,5 +34,11 @@ export default class Server {
      * @param { CallableFunction } callback Callback to fire on event fire
      */
     on(eventName: string, serverId: string, callback: CallableFunction): void;
+    /**
+     * Send a message to a connection
+     * @param { any } connection Connection to send to
+     * @param { string } message Message to send to connection
+     */
+    send(connection: any, message: string): void;
 }
 //# sourceMappingURL=Server.d.ts.map

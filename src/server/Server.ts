@@ -75,7 +75,7 @@ export default class Server {
         });
 
         webSocketServer.on("request", (request: any) => {
-            const connection = request.accept(null, request.origin);
+            const connection: any = request.accept(null, request.origin);
             server.connections.push(connection);
 
             server.events.onOpen.forEach((value: CallableFunction, index: number) => {
@@ -143,5 +143,10 @@ export default class Server {
 
     /**
      * Send a message to a connection
+     * @param { any } connection Connection to send to
+     * @param { string } message Message to send to connection
      */
+    public send(connection: any, message: string) {
+        connection.sendUTF(message);
+    }
 }

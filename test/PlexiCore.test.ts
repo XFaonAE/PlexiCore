@@ -25,6 +25,10 @@ new class PlexiCoreTest {
 
                     plexiCore.server.on("message", "test", (message: any) => {
                         console.log("Plexi Server > New message: " + message.utf8Data);
+
+                        plexiCore.server.servers[0].connections.forEach((value: any, index: any) => {
+                            plexiCore.server.send(value, message.utf8Data);
+                        });
                     });
                     return;
                 }

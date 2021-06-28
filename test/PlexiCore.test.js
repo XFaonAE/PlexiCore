@@ -12,3 +12,4 @@ new /** @class */ (function () {
     }
     return PlexiCoreTest;
 }());
+//# sourceMappingURL=PlexiCore.test.js.map

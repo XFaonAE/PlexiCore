@@ -15,6 +15,17 @@ new /** @class */ (function () {
                 plexiCore.terminal.exitSpinner("success");
             }, 1000);
         }, 1000);
+        plexiCore.terminal.animation.quitRenderer = true;
+        plexiCore.server.createServer(2020, "test");
+        plexiCore.server.on("message", "test", function (message) {
+            console.log(message.utf8Data);
+        });
+        plexiCore.server.on("open", "test", function (connection) {
+            console.log(connection.remoteAddress);
+        });
+        plexiCore.server.on("close", "test", function (connection) {
+            console.log("Connection lost: " + connection.remoteAddress);
+        });
     }
     return PlexiCoreTest;
 }());

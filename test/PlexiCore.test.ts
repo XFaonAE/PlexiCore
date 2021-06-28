@@ -11,5 +11,21 @@ new class PlexiCoreTest {
                 plexiCore.terminal.exitSpinner("success");
             }, 1000);
         }, 1000);
+
+        plexiCore.terminal.animation.quitRenderer = true;
+
+        plexiCore.server.createServer(2020, "test");
+
+        plexiCore.server.on("message", "test", (message: any) => {
+            console.log(message.utf8Data);
+        });
+
+        plexiCore.server.on("open", "test", (connection: any) => {
+            console.log(connection.remoteAddress);
+        });
+
+        plexiCore.server.on("close", "test", (connection: any) => {
+            console.log("Connection lost: " + connection.remoteAddress);
+        });
     }
 }

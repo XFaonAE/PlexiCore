@@ -72,4 +72,12 @@ export default class Terminal {
     public writeSpinner(text: string, options: object = {}) {
         this.animation.write(text, options);
     }
+
+    /**
+     * Set spinner status state and exit
+     * @param { string } statusCode Status code
+     */
+    public exitSpinner(statusCode: string) {
+        this.animation.exitSpinner(statusCode);
+    }
 }

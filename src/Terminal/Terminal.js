@@ -51,6 +51,13 @@ var Terminal = /** @class */ (function () {
         if (options === void 0) { options = {}; }
         this.animation.write(text, options);
     };
+    /**
+     * Set spinner status state and exit
+     * @param { string } statusCode Status code
+     */
+    Terminal.prototype.exitSpinner = function (statusCode) {
+        this.animation.exitSpinner(statusCode);
+    };
     return Terminal;
 }());
 exports.default = Terminal;

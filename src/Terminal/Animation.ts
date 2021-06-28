@@ -34,6 +34,16 @@ export default class Animation {
     public terminal: Terminal;
 
     /**
+     * @var { AnimationWriteOptions } currentOptions Options for current animation
+     */
+    public currentOptions: AnimationWriteOptions;
+
+    /**
+     * @var { string } currentMessage Current message for the spinner
+     */
+    public currentMessage: string;
+
+    /**
      * Create animations in the terminal
      */
     public constructor(terminal: Terminal) {
@@ -43,6 +53,14 @@ export default class Animation {
         this.preRenderedFrames = [];
         this.currentFrame = 0;
         this.terminal = terminal;
+        this.currentMessage = "";
+        this.currentOptions = {
+            animation: {
+                interval: 0,
+                frames: []
+            },
+            statusIcons: {}
+        };
     }
 
     /**
@@ -66,6 +84,11 @@ export default class Animation {
                     chalk.hex("#50ffab")("⠇"),
                     chalk.hex("#50ffab")("⠏")
                 ]
+            },
+            statusIcons: {
+                success: chalk.hex("#50ffab")("✓"),
+                warning: chalk.hex("#ffff77")("△"),
+                error: chalk.hex("#ff7777")("✖")
             }
         };
         const options: AnimationWriteOptions = Object.assign(templateOptions, rawOptions);
@@ -76,6 +99,8 @@ export default class Animation {
         });
 
         this.preRenderedFrames = tempPreRenderedFrames;
+        this.currentOptions = options;
+        this.currentMessage = text;
         this.renderFrame = true;
         if (!this.rendererStarted) {
             this.rendererStarted = true;
@@ -117,5 +142,22 @@ export default class Animation {
         }
 
         return this.preRenderedFrames[this.currentFrame];
+    }
+
+    /**
+     * Exit the spinner animation
+     * @param { string } statusName Name of the status state
+     */
+    public exitSpinner(statusName: string) {
+        const icon: string = this.currentOptions.statusIcons[statusName];
+        this.preRenderedFrames = [];
+        this.renderFrame = false;
+        this.write(this.currentMessage, {
+            animation: {
+                frames: [
+                    icon
+                ]
+            }
+        });
     }
 }

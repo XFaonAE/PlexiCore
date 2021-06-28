@@ -3,5 +3,6 @@ export default interface AnimationWriteOptions {
         interval: number;
         frames: Array<string>;
     };
+    statusIcons: any;
 }
 //# sourceMappingURL=AnimationWriteOptions.d.ts.map

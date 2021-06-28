@@ -9,6 +9,12 @@ new /** @class */ (function () {
         var plexiCore = new PlexiCore_1.default();
         plexiCore.terminal.dividerCreate("Hello, PlexiCore");
         plexiCore.terminal.writeSpinner("Hello, CliAnimeJs");
+        setTimeout(function () {
+            plexiCore.terminal.writeSpinner("Hello, CliAnimeJs | New Message");
+            setTimeout(function () {
+                plexiCore.terminal.exitSpinner("success");
+            }, 1000);
+        }, 1000);
     }
     return PlexiCoreTest;
 }());

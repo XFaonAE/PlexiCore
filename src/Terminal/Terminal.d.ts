@@ -26,5 +26,10 @@ export default class Terminal {
      * @param { object } options Options
      */
     writeSpinner(text: string, options?: object): void;
+    /**
+     * Set spinner status state and exit
+     * @param { string } statusCode Status code
+     */
+    exitSpinner(statusCode: string): void;
 }
 //# sourceMappingURL=Terminal.d.ts.map

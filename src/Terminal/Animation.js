@@ -51,6 +51,14 @@ var Animation = /** @class */ (function () {
         this.preRenderedFrames = [];
         this.currentFrame = 0;
         this.terminal = terminal;
+        this.currentMessage = "";
+        this.currentOptions = {
+            animation: {
+                interval: 0,
+                frames: []
+            },
+            statusIcons: {}
+        };
     }
     /**
      * Write spinner
@@ -74,6 +82,11 @@ var Animation = /** @class */ (function () {
                     chalk_1.default.hex("#50ffab")("⠇"),
                     chalk_1.default.hex("#50ffab")("⠏")
                 ]
+            },
+            statusIcons: {
+                success: chalk_1.default.hex("#50ffab")("✓"),
+                warning: chalk_1.default.hex("#ffff77")("△"),
+                error: chalk_1.default.hex("#ff7777")("✖")
             }
         };
         var options = Object.assign(templateOptions, rawOptions);
@@ -82,8 +95,11 @@ var Animation = /** @class */ (function () {
             tempPreRenderedFrames.push(value + " " + text);
         });
         this.preRenderedFrames = tempPreRenderedFrames;
+        this.currentOptions = options;
+        this.currentMessage = text;
         this.renderFrame = true;
         if (!this.rendererStarted) {
+            this.rendererStarted = true;
             this.startRendererLoop(options);
         }
     };
@@ -123,6 +139,22 @@ var Animation = /** @class */ (function () {
             this.currentFrame = 0;
         }
         return this.preRenderedFrames[this.currentFrame];
+    };
+    /**
+     * Exit the spinner animation
+     * @param { string } statusName Name of the status state
+     */
+    Animation.prototype.exitSpinner = function (statusName) {
+        var icon = this.currentOptions.statusIcons[statusName];
+        this.preRenderedFrames = [];
+        this.renderFrame = false;
+        this.write(this.currentMessage, {
+            animation: {
+                frames: [
+                    icon
+                ]
+            }
+        });
     };
     return Animation;
 }());

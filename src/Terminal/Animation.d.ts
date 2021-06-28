@@ -26,6 +26,14 @@ export default class Animation {
      */
     terminal: Terminal;
     /**
+     * @var { AnimationWriteOptions } currentOptions Options for current animation
+     */
+    currentOptions: AnimationWriteOptions;
+    /**
+     * @var { string } currentMessage Current message for the spinner
+     */
+    currentMessage: string;
+    /**
      * Create animations in the terminal
      */
     constructor(terminal: Terminal);
@@ -45,5 +53,10 @@ export default class Animation {
      * @return { string } Rendered frame
      */
     getNextFrame(): string;
+    /**
+     * Exit the spinner animation
+     * @param { string } statusName Name of the status state
+     */
+    exitSpinner(statusName: string): void;
 }
 //# sourceMappingURL=Animation.d.ts.map

@@ -8,6 +8,7 @@ new /** @class */ (function () {
     function PlexiCoreTest() {
         var plexiCore = new PlexiCore_1.default();
         plexiCore.terminal.dividerCreate("Hello, PlexiCore");
+        plexiCore.terminal.writeSpinner("Hello, CliAnimeJs");
     }
     return PlexiCoreTest;
 }());

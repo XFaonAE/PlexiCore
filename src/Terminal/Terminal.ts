@@ -1,6 +1,25 @@
-export default class Terminal {
-    public constructor() {
+import chalk from "chalk";
+import PlexiCore from "../PlexiCore";
+import Animation from "./Animation";
 
+export default class Terminal {
+    /**
+     * @var { PlexiCore } plexiCore PlexiCore class object
+     */
+    public plexiCore: PlexiCore;
+
+    /**
+     * @var { Animation } animation Animation class object
+     */
+    public animation: Animation;
+
+    /**
+     * Class used for terminal communications
+     * @param { PlexiCore } plexiCore PlexiCore class object
+     */
+    public constructor(plexiCore: PlexiCore) {
+        this.plexiCore = plexiCore;
+        this.animation = new Animation(this);
     }
 
     /**
@@ -9,7 +28,7 @@ export default class Terminal {
      * @param { object } rawOptions Options for creating the divider
      */
     public dividerCreate(rawTitle: string, rawOptions: object = {}) {
-        interface DividerCreateOptions {
+        interface Options {
             titleHex: string;
             barHex: string;
             titlePadding: number;
@@ -18,7 +37,7 @@ export default class Terminal {
             barSymbol: string;
         }
 
-        const templateOptions: DividerCreateOptions = {
+        const templateOptions: Options = {
             barHex: "#555",
             titleHex: "#fff",
             titlePadding: 5,
@@ -26,16 +45,31 @@ export default class Terminal {
             barStartLength: 8,
             barSymbol: "─"
         };
-        const options: DividerCreateOptions = Object.assign(templateOptions, rawOptions);
-        var divider: string = "";
-        var columnsLeft: number = process.stdout.columns;
+        const options: Options = Object.assign(templateOptions, rawOptions);
+        let divider: string = "";
+        let columnsLeft: number = process.stdout.columns;
 
-        const barStart = options.barSymbol.repeat(options.barStartLength);
+        const barStart: string = options.barSymbol.repeat(options.barStartLength);
         columnsLeft -= barStart.length;
 
-        const titlePadding = options.titlePaddingSymbol.repeat(options.titlePadding);
+        const titlePadding: string = options.titlePaddingSymbol.repeat(options.titlePadding);
         columnsLeft -= (titlePadding.length * 2);
 
+        columnsLeft -= rawTitle.length;
+
+        const barEnd: string = options.barSymbol.repeat(columnsLeft);
+        columnsLeft -= barEnd.length;
+
+        divider = chalk.hex(options.barHex)(barStart) + titlePadding + chalk.hex(options.titleHex)(rawTitle) + titlePadding + chalk.hex(options.barHex)(barEnd);
         console.log(divider);
+    }
+
+    /**
+     * Write a spinner animation
+     * @param { string } text Text to display with animation
+     * @param { object } options Options
+     */
+    public writeSpinner(text: string, options: object = {}) {
+        this.animation.write(text, options);
     }
 }

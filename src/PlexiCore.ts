@@ -7,6 +7,6 @@ export default class PlexiCore {
      * PlexiCore framework entry
      */
     public constructor() {
-        this.terminal = new Terminal();
+        this.terminal = new Terminal(this);
     }
 }

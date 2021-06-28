@@ -9,7 +9,7 @@ var PlexiCore = /** @class */ (function () {
      * PlexiCore framework entry
      */
     function PlexiCore() {
-        this.terminal = new Terminal_1.default();
+        this.terminal = new Terminal_1.default(this);
     }
     return PlexiCore;
 }());

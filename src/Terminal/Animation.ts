@@ -78,6 +78,7 @@ export default class Animation {
         this.preRenderedFrames = tempPreRenderedFrames;
         this.renderFrame = true;
         if (!this.rendererStarted) {
+            this.rendererStarted = true;
             this.startRendererLoop(options);
         }
     }

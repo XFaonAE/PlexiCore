@@ -1,5 +1,6 @@
 import Terminal from "./Terminal";
 import chalk from "chalk";
+import AnimationWriteOptions from "./AnimationWriteOptions";
 
 export default class Animation {
     /**
@@ -50,16 +51,9 @@ export default class Animation {
      * @param  { object } rawOptions Options
      */
     public write(text: string, rawOptions: object = {}) {
-        interface Options {
+        const templateOptions: AnimationWriteOptions = {
             animation: {
-                interval: number;
-                frames: Array<string>
-            }
-        }
-
-        const templateOptions: Options = {
-            animation: {
-                interval: 70,
+                interval: 50,
                 frames: [
                     chalk.hex("#50ffab")("⠋"),
                     chalk.hex("#50ffab")("⠙"),
@@ -74,7 +68,7 @@ export default class Animation {
                 ]
             }
         };
-        const options: Options = Object.assign(templateOptions, rawOptions);
+        const options: AnimationWriteOptions = Object.assign(templateOptions, rawOptions);
         let tempPreRenderedFrames: Array<string> = [];
 
         options.animation.frames.forEach((value: string, index: number) => {
@@ -90,24 +84,26 @@ export default class Animation {
 
     /**
      * Start the frame renderer loop
-     * @param { object } options Options
+     * @param { AnimationWriteOptions } options Options
      */
-    public startRendererLoop(options: object) {
-        const frameNext: CallableFunction = () => {
-            setTimeout(() => {
-                this.currentFrame++;
-                if (this.renderFrame) {
-                    process.stdout.write("\r" + this.getNextFrame());
-                }
+    public startRendererLoop(options: AnimationWriteOptions) {
+        (async () => {
+            const frameNext: CallableFunction = () => {
+                setTimeout(() => {
+                    this.currentFrame++;
+                    if (this.renderFrame) {
+                        process.stdout.write("\r" + this.getNextFrame());
+                    }
 
-                if (this.quitRenderer) {
-                    return;
-                }
+                    if (this.quitRenderer) {
+                        return;
+                    }
 
-                frameNext();
-            }, options.animation.interval);
-        }
-        frameNext();
+                    frameNext();
+                }, options.animation.interval);
+            }
+            frameNext();
+        })();
     }
 
     /**

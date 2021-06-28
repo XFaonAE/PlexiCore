@@ -1,4 +1,5 @@
 import Terminal from "./Terminal";
+import AnimationWriteOptions from "./AnimationWriteOptions";
 export default class Animation {
     /**
      * @var { boolean } renderFrame Render the frame to the terminal
@@ -36,9 +37,9 @@ export default class Animation {
     write(text: string, rawOptions?: object): void;
     /**
      * Start the frame renderer loop
-     * @param { object } options Options
+     * @param { AnimationWriteOptions } options Options
      */
-    startRendererLoop(options: object): void;
+    startRendererLoop(options: AnimationWriteOptions): void;
     /**
      * Get the next rendered frame
      * @return { string } Rendered frame

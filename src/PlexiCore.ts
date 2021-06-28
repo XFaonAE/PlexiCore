@@ -1,7 +1,7 @@
 import Terminal from "./Terminal/Terminal";
 import Server from "./server/Server";
 
-export default class PlexiCore {
+module.exports = class PlexiCore {
     /**
      * @var { Server } server Server class object
      */

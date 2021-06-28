@@ -35,6 +35,7 @@ var Server = /** @class */ (function () {
         this.servers.push({
             id: id,
             server: webSocketServer,
+            connections: [],
             events: {
                 onRequest: [],
                 onMessage: [],
@@ -61,6 +62,7 @@ var Server = /** @class */ (function () {
         });
         webSocketServer.on("request", function (request) {
             var connection = request.accept(null, request.origin);
+            server.connections.push(connection);
             server.events.onOpen.forEach(function (value, index) {
                 value(connection);
             });
@@ -73,12 +75,23 @@ var Server = /** @class */ (function () {
                 });
             });
             connection.on("close", function () {
+                server.connections.forEach(function (value, index) {
+                    if (connection == value) {
+                        delete server.connections[index];
+                    }
+                });
                 server.events.onClose.forEach(function (value, index) {
                     value(connection);
                 });
             });
         });
     };
+    /**
+     * On event listener
+     * @param { string } eventName Name of the event
+     * @param { string } serverId ID of the server
+     * @param { CallableFunction } callback Callback to fire on event fire
+     */
     Server.prototype.on = function (eventName, serverId, callback) {
         var server = {};
         var serverIndex = 0;

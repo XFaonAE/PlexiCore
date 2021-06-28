@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Terminal_1 = __importDefault(require("./Terminal/Terminal"));
 var Server_1 = __importDefault(require("./server/Server"));
-module.exports = /** @class */ (function () {
+var PlexiCore = /** @class */ (function () {
     /**
      * PlexiCore framework entry
      */
@@ -15,4 +15,5 @@ module.exports = /** @class */ (function () {
     }
     return PlexiCore;
 }());
+exports.default = PlexiCore;
 //# sourceMappingURL=PlexiCore.js.map

@@ -1,0 +1,22 @@
+{
+  "name": "@axeridev/plexi-core",
+  "version": "1.0.0",
+  "description": "Build powerful server-driven applications with ease | PlexiCoreJS",
+  "main": "./src/PlexiCore.js",
+  "scripts": {
+    "test": "node ./test/PlexiCore.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AxeriDev/PlexiCore.git"
+  },
+  "author": "AxeriDev <support@axeri.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AxeriDev/PlexiCore/issues"
+  },
+  "homepage": "https://github.com/AxeriDev/PlexiCore#readme",
+  "dependencies": {
+    "typescript": "^4.3.4"
+  }
+}

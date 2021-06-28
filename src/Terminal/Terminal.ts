@@ -79,5 +79,6 @@ export default class Terminal {
      */
     public exitSpinner(statusCode: string) {
         this.animation.exitSpinner(statusCode);
+        console.log("");
     }
 }

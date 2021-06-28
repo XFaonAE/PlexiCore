@@ -18,5 +18,8 @@
   "homepage": "https://github.com/AxeriDev/PlexiCore#readme",
   "dependencies": {
     "typescript": "^4.3.4"
+  },
+  "devDependencies": {
+    "@types/node": "^15.12.5"
   }
 }

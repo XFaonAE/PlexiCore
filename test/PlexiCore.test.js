@@ -23,6 +23,9 @@ new /** @class */ (function () {
                     });
                     plexiCore.server.on("message", "test", function (message) {
                         console.log("Plexi Server > New message: " + message.utf8Data);
+                        plexiCore.server.servers[0].connections.forEach(function (value, index) {
+                            plexiCore.server.send(value, message.utf8Data);
+                        });
                     });
                     return;
                 }

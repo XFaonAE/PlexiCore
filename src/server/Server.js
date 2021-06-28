@@ -116,6 +116,14 @@ var Server = /** @class */ (function () {
                 break;
         }
     };
+    /**
+     * Send a message to a connection
+     * @param { any } connection Connection to send to
+     * @param { string } message Message to send to connection
+     */
+    Server.prototype.send = function (connection, message) {
+        connection.sendUTF(message);
+    };
     return Server;
 }());
 exports.default = Server;

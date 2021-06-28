@@ -57,6 +57,7 @@ var Terminal = /** @class */ (function () {
      */
     Terminal.prototype.exitSpinner = function (statusCode) {
         this.animation.exitSpinner(statusCode);
+        console.log("");
     };
     return Terminal;
 }());

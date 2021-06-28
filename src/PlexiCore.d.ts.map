@@ -1,1 +1,1 @@
-{"version":3,"file":"PlexiCore.d.ts","sourceRoot":"","sources":["PlexiCore.ts"],"names":[],"mappings":"AAAA,OAAO,QAAQ,MAAM,qBAAqB,CAAC;AAE3C,MAAM,CAAC,OAAO,OAAO,SAAS;IACnB,QAAQ,EAAE,QAAQ,CAAC;IAE1B;;OAEG;;CAIN"}
+{"version":3,"file":"PlexiCore.d.ts","sourceRoot":"","sources":["PlexiCore.ts"],"names":[],"mappings":"AAAA,OAAO,QAAQ,MAAM,qBAAqB,CAAC;AAC3C,OAAO,MAAM,MAAM,iBAAiB,CAAC;AAErC,MAAM,CAAC,OAAO,OAAO,SAAS;IAC1B;;OAEG;IACI,MAAM,EAAE,MAAM,CAAC;IAEtB;;OAEG;IACI,QAAQ,EAAE,QAAQ,CAAC;IAE1B;;OAEG;;CAKN"}

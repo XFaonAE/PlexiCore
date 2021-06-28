@@ -4,12 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var Terminal_1 = __importDefault(require("./Terminal/Terminal"));
+var Server_1 = __importDefault(require("./server/Server"));
 var PlexiCore = /** @class */ (function () {
     /**
      * PlexiCore framework entry
      */
     function PlexiCore() {
         this.terminal = new Terminal_1.default(this);
+        this.server = new Server_1.default(this);
     }
     return PlexiCore;
 }());

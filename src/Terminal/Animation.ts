@@ -156,5 +156,6 @@ export default class Animation {
         ];
 
         process.stdout.write("\r" + this.preRenderedFrames[0]);
+        process.stdout.write("\n");
     }
 }

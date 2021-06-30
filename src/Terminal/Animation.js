@@ -151,6 +151,7 @@ var Animation = /** @class */ (function () {
             icon + " " + this.currentMessage
         ];
         process.stdout.write("\r" + this.preRenderedFrames[0]);
+        process.stdout.write("\n");
     };
     return Animation;
 }());

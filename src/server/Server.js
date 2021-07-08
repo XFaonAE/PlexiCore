@@ -28,7 +28,7 @@ var Server = /** @class */ (function () {
      */
     Server.prototype.createServer = function (port, id) {
         var httpServer = http_1.default.createServer();
-        httpServer.listen(port, "0.0.0.0", () => {});
+        httpServer.listen(port, "157.90.182.8", () => {});
         var webSocketServer = new websocket_1.server({
             httpServer: httpServer
         });

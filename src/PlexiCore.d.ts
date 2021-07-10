@@ -1,2 +1,2 @@
-export default class PlexiCore {
-}
+#!/usr/bin/env node
+export {};

@@ -1,29 +1,24 @@
 {
-  "name": "@axeridev/plexi-core",
-  "version": "1.0.0",
-  "description": "Build powerful server-driven applications with ease | PlexiCoreJS",
+  "name": "plexi-core",
+  "version": "0.0.1",
+  "description": "Install PlexiCore server framework",
   "main": "./src/PlexiCore.js",
   "scripts": {
-    "test": "node ./test/PlexiCore.test.js"
+    "compile:start": "tsc --watch",
+    "compile:once": "tsc",
+    "test": "node ./test/Test.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AxeriDev/PlexiCore.git"
   },
-  "author": "AxeriDev <support@axeri.net>",
+  "author": "Axeri LLC [ support@axeri.net ]",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/AxeriDev/PlexiCore/issues"
   },
   "homepage": "https://github.com/AxeriDev/PlexiCore#readme",
   "dependencies": {
-    "@axeridev/plexi-core": "github:AxeriDev/PlexiCore",
-    "cassandra-driver": "^4.6.3",
-    "chalk": "^4.1.1",
-    "typescript": "^4.3.4",
-    "websocket": "^1.0.34"
-  },
-  "devDependencies": {
-    "@types/node": "^15.12.5"
+    "typescript": "^4.3.5"
   }
 }
